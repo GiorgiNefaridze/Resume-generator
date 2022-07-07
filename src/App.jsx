@@ -5,6 +5,8 @@ import ChooseTemplate from './chooseTemplate/ChooseTemplate';
 import ImportResume from './importResume/ImportResume';
 import CreateResume from './create/CreateResume';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 //Page Not Found Component
 import PageNotFound from './pageNotFound/PageNotFound';
 

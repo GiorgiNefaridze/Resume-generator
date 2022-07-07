@@ -1,3 +1,4 @@
+import FormForTheme from '../components/FormForTheme'
 import { useLocation } from 'react-router-dom'
 import './CreateResume.scss'
 
@@ -11,7 +12,7 @@ export default function CreateResume() {
 
     return (
         <div className="create-resume-container">
-
+            <FormForTheme />
         </div>
     )
 }
