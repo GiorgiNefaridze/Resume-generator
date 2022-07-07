@@ -1,0 +1,180 @@
+.chooseTemplate-container {
+    width: 100%;
+    height: 100vh;
+    background-color: #f6ebc2;
+    display: flex;
+
+    @media only screen and (max-width:950px){
+        height:auto;
+        flex-direction: column;
+        align-items: center;
+        gap:20vh;
+    }
+
+    &-themes {
+        background-color: white;
+        width: 60%;
+        height: 100%;
+        padding-inline: 100px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        gap: 45px 0;
+        position: relative;
+        font-family: "Roboto";
+
+        @media only screen and (max-width:1215px) {
+            width: 52%;
+            padding-inline: 40px;
+            align-items: center;
+        }
+
+        @media only screen and (max-width:950px){
+            width:100%;
+            height:550px;
+        }
+
+        &-header {
+            display: flex;
+            flex-direction: column;
+            gap: 15px 0;
+
+            @media only screen and (max-width:1215px) {
+                align-items: center;
+            }
+
+            h1 {
+                font-size: 50px;
+                font-weight: 700;
+                letter-spacing: 1.5px;
+            }
+
+            p {
+                width: 70%;
+                font-size: 18px;
+                line-height: 30px;
+                @media only screen and (max-width:500px) {
+                    text-align: center;
+                    width:90%;
+                }
+            }
+        }
+
+        &-colors {
+            width: 400px;
+            height: auto;
+            border: 1px solid gray;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
+
+            @media only screen and (max-width:500px) {
+                width: 325px;
+            }
+
+            div {
+                width: 60px;
+                height: 60px;
+                background-color: black;
+                border-radius: 5px;
+                cursor: pointer;
+                @media only screen and (max-width:500px) {
+                    width: 50px;
+                    height: 50px;
+                }
+
+                &.selected {
+                    padding: 20px;
+                    content: url("../images/select.png")
+                }
+            }
+        }
+
+        &-select {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            @media only screen and (max-width:1215px) {
+                justify-content: center;
+            }
+
+            a {
+                text-decoration: none;
+                background: #7986cb;
+                font-size: 18px;
+                color: white;
+                border-radius: 7px;
+                box-shadow: 0 5px 0px #3f51b5;
+                display: inline-block;
+                transition: all .2s;
+                padding: 10px 15px;
+                top: 0;
+                font-weight: 600;
+                cursor: pointer;
+
+                &:active {
+                    top: 3px;
+                    box-shadow: 0 2px 0px #3f51b5;
+                    transition: all .2s;
+                }
+            }
+        }
+
+        &-arrows {
+            width: 90px;
+            height: 90px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+
+            div {
+                width: 40px;
+                height: 40px;
+                background-color: #f5eed3;
+                border-radius: 50%;
+                box-shadow: 1px 1px 2px rgb(143, 143, 143);
+                padding: 10px;
+                content: url("../images/arrow.png");
+                transform: rotate(-90deg);
+                cursor: pointer;
+
+                &:last-child {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+    }
+
+    &-template {
+        width: 40%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media only screen and (max-width:1215px) {
+            width: 48%;
+        }
+
+        @media only screen and (max-width:950px){
+            width:100%;
+            padding-bottom:35px;
+        }
+
+        @media only screen and (max-width:550px){
+            width:80%;
+            padding-bottom:35px;
+        }
+    }
+}
