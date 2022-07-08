@@ -22,16 +22,8 @@ export default function AngoraTheme({themeColor}) {
                 <h2 style={{
                     color: themeColor
                 }}>Skills</h2>
-                <ul>
-                    <li>Lorem</li>
-                    <li>Lorem</li>
-                    <li>Lorem</li>
-                    <li>Lorem</li>
-                    <li>Lorem</li>
-                    <li>Lorem</li>
-                    <li>Lorem</li>
-                    <li>Lorem</li>
-                </ul>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, nostrum
+                    maiores earum veniam odit excepturi.</p>
             </div>
             <div className='angora-container-experience'>
                 <h2 style={{
