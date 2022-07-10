@@ -1,51 +1,51 @@
 export const colorCards = [
     {
-        backgroundColor:"#000000",
+        backgroundColor:"black",
         isSelected:false,
         id:Math.random() * 1000000
     },
     {
-        backgroundColor:"#436975",
+        backgroundColor:"aqua",
         isSelected:false,
         id:Math.random() * 1000000
     },
     {
-        backgroundColor:"#305fec",
+        backgroundColor:"blue",
         isSelected:false,
         id:Math.random() * 1000000
     },
     {
-        backgroundColor:"#0e9fc1",
+        backgroundColor:"red",
         isSelected:false,
         id:Math.random() * 1000000
     },
     {
-        backgroundColor:"#7ebca3",
+        backgroundColor:"lightgreen",
         isSelected:false,
         id:Math.random() * 1000000
     },
     {
-        backgroundColor:"#acb75a",
+        backgroundColor:"lightblue",
         isSelected:false,
         id:Math.random() * 1000000
     },
     {
-        backgroundColor:"#9097be",
+        backgroundColor:"purple",
         isSelected:false,
         id:Math.random() * 1000000
     },
     {
-        backgroundColor:"#ac7bae",
+        backgroundColor:"chocolate",
         isSelected:false,
         id:Math.random() * 1000000
     },
     {
-        backgroundColor:"#436975",
+        backgroundColor:"orange",
         isSelected:false,
         id:Math.random() * 1000000
     },
     {
-        backgroundColor:"#96006f",
+        backgroundColor:"pink",
         isSelected:false,
         id:Math.random() * 1000000
     }

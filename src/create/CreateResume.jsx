@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 import PhoneImg from '../images/phone.webp'
 import EmailImg from '../images/email.jpg'
 import LocationImg from '../images/location.png'
-import ProgressBar from '../progressBar/ProgressBar'
+import ProgressBar from '../components/progressBar/ProgressBar'
 import './CreateResume.scss'
 
 export default function CreateResume() {

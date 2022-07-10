@@ -13,7 +13,6 @@ export default function ChooseTemplate() {
     //Refs
     const themeNameRef = useRef()
     const themeAboutRef = useRef()
-    const colorsContainerRef = useRef()
 
     //States
     const [colors,setColors] = useState(colorCards)
@@ -52,7 +51,11 @@ export default function ChooseTemplate() {
         })
 
         setColors(selectEachCard)
-        setStorageColor(e.target.style.backgroundColor.split(" ").join(""))
+        setStorageColor(e.target.style.backgroundColor)
+    }
+
+    const stillSelectedColor = () => {
+        setThemeColor(storageColor)
     }
 
     const themeColorChangeByHover = (bgColor) => {
@@ -66,7 +69,7 @@ export default function ChooseTemplate() {
                     <h1 ref={themeNameRef}>{angoraTheme.theme}</h1>
                     <p ref={themeAboutRef}>{angoraTheme.about}</p>
                 </div>
-                <div ref={colorsContainerRef} className="chooseTemplate-container-themes-colors">
+                <div onMouseLeave={stillSelectedColor} className="chooseTemplate-container-themes-colors">
                     <ThemeColors themeColorChangeByHover={themeColorChangeByHover} colors={colors} selectColor={selectColor} />
                 </div>
                 <div className="chooseTemplate-container-themes-select">
