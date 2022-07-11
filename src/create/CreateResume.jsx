@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState,useEffect,useRef } from 'react'
 import FormForTheme from '../components/FormForTheme'
-import { useLocation } from 'react-router-dom'
+import { useLocation,useNavigate } from 'react-router-dom'
 import PhoneImg from '../images/phone.webp'
 import EmailImg from '../images/email.jpg'
 import LocationImg from '../images/location.png'
@@ -10,6 +10,7 @@ import './CreateResume.scss'
 export default function CreateResume() {
 
     const location = useLocation()
+    const navigate = useNavigate()
 
     //ThemeInformation
     const themeColor = location
@@ -19,9 +20,9 @@ export default function CreateResume() {
         .search
         .split("=")[1]
         .split("&")[0]
-
         
-    const [data,setData] = useState({}) 
+    const [data,setData] = useState({})
+    const [disabledChecker,setDisabledChecker] = useState(true)
     const [name,setName] = useState("")
     const [number,setNumber] = useState("")
     const [email,setEmail] = useState("")
@@ -33,6 +34,17 @@ export default function CreateResume() {
     const arrayOfAllInputs = [name,number,email,adress,summary,experience,skills]
 
     const findOuFillInput = arrayOfAllInputs.filter(e => e.length > 0).length
+
+    //Refs
+    const themeRef = useRef()
+
+    useEffect(()=> {
+        findOuFillInput === 7 ? setDisabledChecker(false) : setDisabledChecker(true)
+    }, [name,number,email,adress,summary,experience,skills])
+
+    const navigateToExport = () => {
+        navigate('/export', {state: {theme :themeRef}})
+    }
 
     return (
         <div className="create-resume-container">
@@ -55,6 +67,7 @@ export default function CreateResume() {
                 skills={skills}
                 setSkills={setSkills}
                 />
+                <button className={disabledChecker ? "disabled" : ""} onClick={navigateToExport} disabled={disabledChecker}>continue</button>
             </div>
             <div className='create-resume-container-template'>
                 {themeName === "Angora"
@@ -109,7 +122,7 @@ export default function CreateResume() {
                                                 "a et ab a velit quam, aperiam aliquam in nihil, vero minus est."}</p>
                             </div>
                         </div>
-                    : <div className="blueprint-container">
+                    : <div ref={themeRef} className="blueprint-container">
                         <div className='blueprint-container-badge'></div>
                         <h1
                             style={{
@@ -176,6 +189,7 @@ export default function CreateResume() {
                                                 "iam.Magnam doloremque sapiente fuga laboriosam !"}</p>
                             </div>
                         </div>
+                        <div className="arrow"></div>
                     </div>
                 }
             </div>

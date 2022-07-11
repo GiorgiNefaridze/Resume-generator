@@ -4,6 +4,7 @@ import Home from './home/Home';
 import ChooseTemplate from './chooseTemplate/ChooseTemplate';
 import ImportResume from './importResume/ImportResume';
 import CreateResume from './create/CreateResume';
+import Export from './export/Export';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -18,6 +19,7 @@ export default function App() {
                 <Route path="/choose-template" element={< ChooseTemplate />}/>
                 <Route path="/import-resume" element={< ImportResume />}/>
                 <Route path="/create" element={< CreateResume />}/>
+                <Route path="/export" element={<Export />} />
                 <Route path="*" element={< PageNotFound />}/>
             </Routes>
         </Router>
