@@ -81,7 +81,7 @@
         font-weight: 700;
         border-bottom: 2px solid black;
         margin-bottom: 10px;
-        z-index:10;
+        z-index:20;
     }
 
     &-inner {
@@ -157,4 +157,8 @@
             }
         }
     }
+}
+
+#spinner{
+    z-index:50;
 }

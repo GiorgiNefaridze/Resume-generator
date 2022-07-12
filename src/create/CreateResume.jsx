@@ -1,10 +1,12 @@
-import { useState,useEffect,useRef } from 'react'
+import { useState,useEffect } from 'react'
 import FormForTheme from '../components/FormForTheme'
 import { useLocation,useNavigate } from 'react-router-dom'
 import PhoneImg from '../images/phone.webp'
 import EmailImg from '../images/email.jpg'
 import LocationImg from '../images/location.png'
 import ProgressBar from '../components/progressBar/ProgressBar'
+import useFetch from '../useFetch'
+import { Spinner } from 'reactstrap'
 import './CreateResume.scss'
 
 export default function CreateResume() {
@@ -35,19 +37,24 @@ export default function CreateResume() {
 
     const findOuFillInput = arrayOfAllInputs.filter(e => e.length > 0).length
 
-    //Refs
-    const themeRef = useRef()
-
     useEffect(()=> {
         findOuFillInput === 7 ? setDisabledChecker(false) : setDisabledChecker(true)
     }, [name,number,email,adress,summary,experience,skills])
 
+
     const navigateToExport = () => {
-        navigate('/export', {state: {theme :themeRef}})
+        navigate('/export', {state: {themeColor,themeName}})
     }
 
+    const { data: userdata,loading } = useFetch()
+
     return (
-        <div className="create-resume-container">
+        <>
+            {loading ? <Spinner color="primary">
+                          Loading...
+                        </Spinner>
+            :
+            <div className="create-resume-container">
             <div className="create-resume-container-info-inputs">
                 <FormForTheme 
                 data={data}
@@ -78,16 +85,16 @@ export default function CreateResume() {
                                     color: themeColor
                                 }}>{localStorage.getItem("name") && localStorage.getItem("name") !== ""
                                         ? localStorage.getItem("name")
-                                        : "Lorem Ipsum"}</h1>
+                                        : userdata.name}</h1>
                                 <p>{localStorage.getItem("number") && localStorage.getItem("number") !== ""
                                         ? localStorage.getItem("number")
-                                        : "Lorem ipsum dolor sit."}</p>
+                                        : userdata.phone}</p>
                                 <p>{localStorage.getItem("email") && localStorage.getItem("email") !== ""
                                         ? localStorage.getItem("email")
-                                        : "Lorem ipsum dolor sit."}.</p>
+                                        : userdata.email}.</p>
                                 <p>{localStorage.getItem("adress") && localStorage.getItem("adress") !== ""
                                         ? localStorage.getItem("adress")
-                                        : "Lorem ipsum dolor sit."}</p>
+                                        : userdata.address}</p>
                             </div>
                             <div className='angora-container-summary'>
                                 <h2
@@ -96,8 +103,7 @@ export default function CreateResume() {
                                 }}>Professional Summary</h2>
                                 <p>{localStorage.getItem("summary") && localStorage.getItem("summary") !== ""
                                         ? localStorage.getItem("summary")
-                                        : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora eaque error au" +
-                                            "tem unde tenetur soluta quos eligendi ab distinctio in!"}</p>
+                                        : userdata.summary}</p>
                             </div>
                             <div className='angora-container-skills'>
                                 <h2
@@ -106,9 +112,7 @@ export default function CreateResume() {
                                 }}>Skills</h2>
                                 <p>{localStorage.getItem("skills") && localStorage.getItem("skills") !== ""
                                         ? localStorage.getItem("skills")
-                                        : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, necessitatibus" +
-                                            " aut! Debitis cupiditate molestias consequatur. Ducimus exercitationem, assumend" +
-                                                "a et ab a velit quam, aperiam aliquam in nihil, vero minus est."}</p>
+                                        : userdata.skills}</p>
                             </div>
                             <div className='angora-container-experience'>
                                 <h2
@@ -117,19 +121,17 @@ export default function CreateResume() {
                                 }}>Experience</h2>
                                 <p>{localStorage.getItem("experience") && localStorage.getItem("experience") !== ""
                                         ? localStorage.getItem("experience")
-                                        : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, necessitatibus" +
-                                            " aut! Debitis cupiditate molestias consequatur. Ducimus exercitationem, assumend" +
-                                                "a et ab a velit quam, aperiam aliquam in nihil, vero minus est."}</p>
+                                        : userdata.experience}</p>
                             </div>
                         </div>
-                    : <div ref={themeRef} className="blueprint-container">
+                    : <div className="blueprint-container">
                         <div className='blueprint-container-badge'></div>
                         <h1
                             style={{
                             color: themeColor
                         }}>{localStorage.getItem("name") && localStorage.getItem("name") !== ""
                                 ? localStorage.getItem("name")
-                                : "Lorem Ipsum"}</h1>
+                                : userdata.name}</h1>
                         <div className='blueprint-container-inner'>
                             <div className="blueprint-container-inner-left-side">
                                 <div className="contact">
@@ -141,19 +143,19 @@ export default function CreateResume() {
                                         <img src={PhoneImg} alt="PhoneImg"/>
                                         <p>{localStorage.getItem("number") && localStorage.getItem("number") !== ""
                                                 ? localStorage.getItem("number")
-                                                : "543-219-876"}</p>
+                                                : userdata.phone}</p>
                                     </div>
                                     <div>
                                         <img src={EmailImg} alt="EmailImg"/>
                                         <p>{localStorage.getItem("email") && localStorage.getItem("email") !== ""
                                                 ? localStorage.getItem("email")
-                                                : "myemail@gmail.com"}</p>
+                                                : userdata.email}</p>
                                     </div>
                                     <div>
                                         <img src={LocationImg} alt="LocationImg"/>
                                         <p>{localStorage.getItem("adress") && localStorage.getItem("adress") !== ""
                                                 ? localStorage.getItem("adress")
-                                                : "123 Main street,Geo"}</p>
+                                                : userdata.address}</p>
                                     </div>
                                 </div>
                                 <div className="summary">
@@ -163,8 +165,7 @@ export default function CreateResume() {
                                     }}>SUMMARY</span>
                                     <p>{localStorage.getItem("summary") && localStorage.getItem("summary") !== ""
                                             ? localStorage.getItem("summary")
-                                            : "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur,architecto! A" +
-                                                "liquam pariatur ullam alias quae?"}</p>
+                                            : userdata.summary}</p>
                                 </div>
                                 <div className="skills">
                                     <span
@@ -173,7 +174,7 @@ export default function CreateResume() {
                                     }}>SKILLS</span>
                                     <p>{localStorage.getItem("skills") && localStorage.getItem("skills") !== ""
                                             ? localStorage.getItem("skills")
-                                            : "Lorem Ipsum"}</p>
+                                            : userdata.sills}</p>
                                 </div>
                             </div>
                             <div className="blueprint-container-inner-right-side">
@@ -183,10 +184,7 @@ export default function CreateResume() {
                                 }}>EXPERIENCE</span>
                                 <p>{localStorage.getItem("experience") && localStorage.getItem("experience") !== ""
                                         ? localStorage.getItem("experience")
-                                        : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam, est. Quos nem" +
-                                            "o voluptate,aliquam sunt cum laborum quam totam,sequi iure expedita beatae ducim" +
-                                                "us sint velit non consectetur quo officia debitis,voluptas assumenda cumque aper" +
-                                                "iam.Magnam doloremque sapiente fuga laboriosam !"}</p>
+                                        : userdata.experience}</p>
                             </div>
                         </div>
                         <div className="arrow"></div>
@@ -195,5 +193,7 @@ export default function CreateResume() {
             </div>
             <ProgressBar findOuFillInput={findOuFillInput} />
         </div>
+            }
+        </>
     )
 }

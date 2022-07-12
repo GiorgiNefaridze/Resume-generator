@@ -1,39 +1,47 @@
+import {Spinner} from 'reactstrap'
 import './AngoraTheme.scss'
 
-export default function AngoraTheme({themeColor}) {
-    return (
-        <div className="angora-container">
-            <div className='angora-container-name'>
-                <h1 style={{
-                    color: themeColor
-                }}>Lorem Ipsum</h1>
-                <p>Lorem ipsum dolor sit.</p>
-                <p>Lorem ipsum dolor sit.</p>
-                <p>Lorem ipsum dolor sit.</p>
+export default function AngoraTheme({themeColor, data, loading}) {
+    return ( 
+        <> 
+        {
+        loading
+            ? <Spinner id="spinner" color="primary">
+                    Loading...
+                </Spinner>
+            : <div className="angora-container">
+                    <div className='angora-container-name'>
+                        <h1
+                            style={{
+                            color: themeColor
+                        }}>{data.name}</h1>
+                        <p>{data.phone}</p>
+                        <p>{data.email}</p>
+                        <p>{data.address}</p>
+                    </div>
+                    <div className='angora-container-summary'>
+                        <h2
+                            style={{
+                            color: themeColor
+                        }}>Professional Summary</h2>
+                        <p>{data.summary}</p>
+                    </div>
+                    <div className='angora-container-skills'>
+                        <h2
+                            style={{
+                            color: themeColor
+                        }}>Skills</h2>
+                        <p>{data.skills}</p>
+                    </div>
+                    <div className='angora-container-experience'>
+                        <h2
+                            style={{
+                            color: themeColor
+                        }}>Experience</h2>
+                        <p>{data.experience}</p>
+                    </div>
             </div>
-            <div className='angora-container-summary'>
-                <h2 style={{
-                    color: themeColor
-                }}>Professional Summary</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora eaque error
-                    autem unde tenetur soluta quos eligendi ab distinctio in!</p>
-            </div>
-            <div className='angora-container-skills'>
-                <h2 style={{
-                    color: themeColor
-                }}>Skills</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, nostrum
-                    maiores earum veniam odit excepturi.</p>
-            </div>
-            <div className='angora-container-experience'>
-                <h2 style={{
-                    color: themeColor
-                }}>Experience</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
-                    necessitatibus aut! Debitis cupiditate molestias consequatur. Ducimus
-                    exercitationem, assumenda et ab a velit quam, aperiam aliquam in nihil, vero
-                    minus est.</p>
-            </div>
-        </div>
+        } 
+        </>
     )
 }

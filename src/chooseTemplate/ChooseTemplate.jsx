@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { colorCards } from '../data/ColorCards'
 import ThemeColors from '../components/ThemeColors'
 import { angoraTheme, blueprintTheme } from '../data/Themes'
+import useFetch from '../useFetch'
 import { Link } from 'react-router-dom'
 import './ChooseTemplate.scss'
 
@@ -21,6 +22,8 @@ export default function ChooseTemplate() {
     const [themeToggle,setThemeToggle] = useState(true)
     const [themeColor,setThemeColor] = useState("")
 
+
+    const { data,loading } = useFetch()
 
     const changeTheme = ()=> {
         if(themeNameRef.current.innerHTML === "Angora"){
@@ -81,7 +84,7 @@ export default function ChooseTemplate() {
                 </div>
             </div>
             <div className='chooseTemplate-container-template'>
-                {themeToggle ? <AngoraTheme themeColor={themeColor} /> : <BlueprintTheme themeColor={themeColor} />}
+                {themeToggle ? <AngoraTheme data={data} loading={loading} themeColor={themeColor} /> : <BlueprintTheme data={data} loading={loading} themeColor={themeColor} />}
             </div>
         </div>
     )
