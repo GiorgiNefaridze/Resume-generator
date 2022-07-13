@@ -65,6 +65,11 @@ export default function ChooseTemplate() {
         setThemeColor(bgColor)
     }
 
+    const storageThemeInLocalStorage = () => {
+        localStorage.setItem("theme", storageTHeme)
+        localStorage.setItem("color", storageColor)
+    }
+
     return (
         <div className='chooseTemplate-container'>
             <div className="chooseTemplate-container-themes">
@@ -76,7 +81,7 @@ export default function ChooseTemplate() {
                     <ThemeColors themeColorChangeByHover={themeColorChangeByHover} colors={colors} selectColor={selectColor} />
                 </div>
                 <div className="chooseTemplate-container-themes-select">
-                    <Link to={`/create?theme=${storageTHeme}&color=${storageColor}`}>Select This Theme</Link>
+                    <Link onClick={storageThemeInLocalStorage} to={`/create?theme=${storageTHeme}&color=${storageColor}`}>Select This Theme</Link>
                 </div>
                 <div className="chooseTemplate-container-themes-arrows">
                     <div title="თემის შეცვლა" onClick={changeTheme}></div>

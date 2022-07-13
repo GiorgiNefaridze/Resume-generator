@@ -1,37 +1,34 @@
-.export-container {
+.stored-resume-container {
     width: 100%;
     height: 100vh;
     background-color: #f6ebc2;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    flex-direction: column;
-    gap:20px;
-    padding-block: 20px;
+    justify-content: center;
 
-    &-btns {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        div{
-            display:flex;
-            gap:0 35px;
-        }
+    table {
+        width: 40%;
+    }
 
-        button {
+    .go-home-container{
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        .go-home {
             text-decoration: none;
             background: #7986cb;
-            font-size: 18px;
+            font-size: 15px;
             color: white;
             border-radius: 7px;
             box-shadow: 0 5px 0px #3f51b5;
-            display: inline-block;
             transition: all .2s;
             padding: 10px 15px;
             top: 0;
+            position: relative;
             font-weight: 600;
             cursor: pointer;
-
+    
             &:active {
                 top: 3px;
                 box-shadow: 0 2px 0px #3f51b5;

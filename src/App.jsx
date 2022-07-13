@@ -5,6 +5,7 @@ import ChooseTemplate from './chooseTemplate/ChooseTemplate';
 import ImportResume from './importResume/ImportResume';
 import CreateResume from './create/CreateResume';
 import Export from './export/Export';
+import StoredResumes from './storedResumes/StoredResumes';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,6 +21,7 @@ export default function App() {
                 <Route path="/import-resume" element={< ImportResume />}/>
                 <Route path="/create" element={< CreateResume />}/>
                 <Route path="/export" element={<Export />} />
+                <Route path="/stored_resumes" element={<StoredResumes />} />
                 <Route path="*" element={< PageNotFound />}/>
             </Routes>
         </Router>

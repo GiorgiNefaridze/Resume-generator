@@ -23,7 +23,8 @@ export default function FormForTheme({
     experience,
     setExperience,
     skills,
-    setSkills
+    setSkills,
+    parsedSavedJSON
 }) {
     const storeNameInLocalStorage = (e) => {
         setName(e.target.value)
@@ -98,6 +99,7 @@ export default function FormForTheme({
                         </Label>
                         <Input
                             value={name}
+                            placeholder={parsedSavedJSON && parsedSavedJSON.name}
                             onChange={(e) => storeNameInLocalStorage(e)}
                             id="name"
                             type="text"/>
@@ -110,6 +112,7 @@ export default function FormForTheme({
                         </Label>
                         <Input
                             value={number}
+                            placeholder={parsedSavedJSON && parsedSavedJSON.number}
                             onChange={(e) => storeNumberInLocalStorage(e)}
                             type="text"
                             id="tel"/>
@@ -124,6 +127,7 @@ export default function FormForTheme({
                         </Label>
                         <Input
                             value={email}
+                            placeholder={parsedSavedJSON && parsedSavedJSON.email}
                             onChange={(e) => storeEmailInLocalStorage(e)}
                             id="email"
                             type="email"/>
@@ -136,6 +140,7 @@ export default function FormForTheme({
                         </Label>
                         <Input
                             value={adress}
+                            placeholder={parsedSavedJSON && parsedSavedJSON.adress}
                             type="text"
                             onChange={(e) => storeAdressInLocalStorage(e)}
                             id="adress"/>
@@ -150,6 +155,7 @@ export default function FormForTheme({
                         </Label>
                         <Input
                             value={summary}
+                            placeholder={parsedSavedJSON && parsedSavedJSON.summary}
                             onChange={(e) => storeSummaryInLocalStorage(e)}
                             id="summary"/>
                     </FormGroup>
@@ -161,6 +167,7 @@ export default function FormForTheme({
                         </Label>
                         <Input
                             value={skills}
+                            placeholder={parsedSavedJSON && parsedSavedJSON.skills}
                             onChange={(e) => storeSkillInLocalStorage(e)}
                             type="text"
                             id="skills"/>
@@ -173,6 +180,7 @@ export default function FormForTheme({
                         </Label>
                         <Input
                             value={experience}
+                            placeholder={parsedSavedJSON && parsedSavedJSON.experience}
                             onChange={(e) => storeExperienceInLocalStorage(e)}
                             id="experience"/>
                     </FormGroup>

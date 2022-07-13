@@ -1,5 +1,6 @@
-import { useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useRef,useState } from 'react';
+import { useLocation,useNavigate } from 'react-router-dom';
+import PopUp from '../components/popUp/PopUp';
 import PhoneImg from '../images/phone.webp'
 import EmailImg from '../images/email.jpg'
 import LocationImg from '../images/location.png'
@@ -10,9 +11,12 @@ import './Export.scss'
 export default function Export() {
 
     const location = useLocation();
+    const navigate  = useNavigate();
 
     const themeColor = location.state.themeColor
     const themeName = location.state.themeName
+
+    const [popUpCheck, setPopUpCheck] = useState(false)
 
     //Refs
     const themeRef = useRef()
@@ -39,23 +43,33 @@ export default function Export() {
         });
     }
 
-    const exportJSON = () => {
-        const userDetails = {
-            name:localStorage.getItem("name"),
-            email:localStorage.getItem("email"),
-            number:localStorage.getItem("number"),
-            adress:localStorage.getItem("adress"),
-            summary:localStorage.getItem("summary"),
-            skills:localStorage.getItem("skills"),
-            experience:localStorage.getItem("experience"),
-        }
+    const userDetails = {
+        id:new Date().getTime(),
+        date:new Date().toString(),
+        name:localStorage.getItem("name"),
+        email:localStorage.getItem("email"),
+        number:localStorage.getItem("number"),
+        adress:localStorage.getItem("adress"),
+        summary:localStorage.getItem("summary"),
+        skills:localStorage.getItem("skills"),
+        experience:localStorage.getItem("experience"),
+    }
 
+    const exportJSON = () => {
         var data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(userDetails));
         var aTag = document.createElement("a")
         aTag.setAttribute("href", data);
         aTag.setAttribute("download", "resume.json");
         aTag.click();
         aTag.remove();
+    }
+
+    const buildAnoutherResume = () => {
+        setPopUpCheck(true)
+    }
+
+    const navigateToStoredResumes = () => {
+        navigate("/stored_resumes", {state: JSON.stringify(userDetails)})
     }
 
     return (
@@ -145,10 +159,17 @@ export default function Export() {
                 </div>
             }
             <div className='export-container-btns'>
-                <button onClick={exportIMG}>Export Image</button>
-                <button onClick={exportPDF}>Export PDF</button>
-                <button onClick={exportJSON}>Export JSON</button>
+                <div>
+                    <button onClick={exportIMG}>Export Image</button>
+                    <button onClick={exportPDF}>Export PDF</button>
+                    <button onClick={exportJSON}>Export JSON</button>
+                </div>
+                <div>
+                    <button onClick={buildAnoutherResume}>Build another resume</button>
+                    <button onClick={navigateToStoredResumes}>See your stored resumes</button>
+                </div>
             </div>
+            {popUpCheck && <PopUp setPopUpCheck={setPopUpCheck} />}
         </div>
     );
 }

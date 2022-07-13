@@ -14,15 +14,6 @@ export default function CreateResume() {
     const location = useLocation()
     const navigate = useNavigate()
 
-    //ThemeInformation
-    const themeColor = location
-        .search
-        .split("=")[2]
-    const themeName = location
-        .search
-        .split("=")[1]
-        .split("&")[0]
-        
     const [data,setData] = useState({})
     const [disabledChecker,setDisabledChecker] = useState(true)
     const [name,setName] = useState("")
@@ -33,13 +24,22 @@ export default function CreateResume() {
     const [experience,setExperience] = useState("")
     const [skills,setSkills] = useState("")
 
+    const themeColor = localStorage.getItem("color")
+    const themeName = localStorage.getItem("theme")
+
+    let parsedSavedJSON
+
+    if(location.state !== null){
+        parsedSavedJSON = JSON.parse(location.state.files)
+    }
+
     const arrayOfAllInputs = [name,number,email,adress,summary,experience,skills]
 
     const findOuFillInput = arrayOfAllInputs.filter(e => e.length > 0).length
 
     useEffect(()=> {
         findOuFillInput === 7 ? setDisabledChecker(false) : setDisabledChecker(true)
-    }, [name,number,email,adress,summary,experience,skills])
+    }, [findOuFillInput])
 
 
     const navigateToExport = () => {
@@ -50,9 +50,9 @@ export default function CreateResume() {
 
     return (
         <>
-            {loading ? <Spinner color="primary">
-                          Loading...
-                        </Spinner>
+            {loading ? <Spinner id="spinner" color="primary">
+              Loading...
+            </Spinner>
             :
             <div className="create-resume-container">
             <div className="create-resume-container-info-inputs">
@@ -73,6 +73,7 @@ export default function CreateResume() {
                 setExperience={setExperience}
                 skills={skills}
                 setSkills={setSkills}
+                parsedSavedJSON={parsedSavedJSON}
                 />
                 <button className={disabledChecker ? "disabled" : ""} onClick={navigateToExport} disabled={disabledChecker}>continue</button>
             </div>
@@ -81,9 +82,8 @@ export default function CreateResume() {
                     ? <div className="angora-container">
                             <div className='angora-container-name'>
                                 <h1
-                                    style={{
-                                    color: themeColor
-                                }}>{localStorage.getItem("name") && localStorage.getItem("name") !== ""
+                                    style={{color:themeColor}}>
+                                        {localStorage.getItem("name") && localStorage.getItem("name") !== ""
                                         ? localStorage.getItem("name")
                                         : userdata.name}</h1>
                                 <p>{localStorage.getItem("number") && localStorage.getItem("number") !== ""
