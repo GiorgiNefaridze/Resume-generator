@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { useLocation,useNavigate } from 'react-router-dom'
 import { Table } from 'reactstrap'
-import ContextMenu from '../components/contextMenu/ContextMenu'
+
+import ContextMenu from '../ContextMenu/ContextMenu'
+
 import './StoredResumes.scss'
 
 export default function StoredResumes(){

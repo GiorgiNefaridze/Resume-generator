@@ -1,16 +1,14 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
-import Home from './home/Home';
-import ChooseTemplate from './chooseTemplate/ChooseTemplate';
-import ImportResume from './importResume/ImportResume';
-import CreateResume from './create/CreateResume';
-import Export from './export/Export';
-import StoredResumes from './storedResumes/StoredResumes';
+import Home from './components/Home/Home';
+import ChooseTemplate from './ChooseTemplate/ChooseTemplate';
+import ImportResume from './ImportResume/ImportResume';
+import CreateResume from './Create/CreateResume';
+import Export from './components/Export/Export';
+import StoredResumes from './components/StoredResumes/StoredResumes';
+import PageNotFound from './components/PageNotFound/PageNotFound';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-//Page Not Found Component
-import PageNotFound from './pageNotFound/PageNotFound';
 
 export default function App() {
     return (

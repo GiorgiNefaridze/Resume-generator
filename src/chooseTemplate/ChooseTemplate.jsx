@@ -1,21 +1,22 @@
 import { useRef, useState } from 'react'
-import { colorCards } from '../data/ColorCards'
-import ThemeColors from '../components/ThemeColors'
-import { angoraTheme, blueprintTheme } from '../data/Themes'
-import useFetch from '../useFetch'
+import { colorCards } from '../utils/ColorCards'
 import { Link } from 'react-router-dom'
+import { angoraTheme, blueprintTheme } from '../data/Themes'
+
+import ThemeColors from '../components/ThemeColors'
+import useFetch from '../hooks/useFetch'
+
 import './ChooseTemplate.scss'
 
 //Themes import
-import AngoraTheme from '../angoraTheme/AngoraTheme'
-import BlueprintTheme from '../blueprintTheme/BlueprintTheme'
+import AngoraTheme from '../components/AngoraTheme/AngoraTheme'
+import BlueprintTheme from '../components/BlueprintTheme/BlueprintTheme'
 
 export default function ChooseTemplate() {
-    //Refs
     const themeNameRef = useRef()
     const themeAboutRef = useRef()
 
-    //States
+
     const [colors,setColors] = useState(colorCards)
     const [storageTHeme,setStorageTheme] = useState("Angora")
     const [storageColor,setStorageColor] = useState("")

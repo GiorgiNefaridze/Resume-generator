@@ -1,5 +1,6 @@
 import { useEffect,useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import './PopUp.scss'
 
 export default function PopUp({setPopUpCheck}) {
@@ -14,7 +15,7 @@ export default function PopUp({setPopUpCheck}) {
         return () => {
             document.removeEventListener('click', handleClickOutside)
         }
-    })
+    }, [])
 
     const handleClickOutside = (e) => {
         if(!popUpRef.current.contains(e.target) || e.target === closeRef.current){

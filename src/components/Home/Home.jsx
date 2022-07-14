@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import { Table } from 'reactstrap'
+
 import './Home.scss'
 
 export default function Home() {
-
     const navigate = useNavigate()
 
     const navigateToChooseTemplate = ()=> {
@@ -14,8 +14,9 @@ export default function Home() {
         navigate("/import-resume")
     }
 
+    let parsedJSON
     if(localStorage.getItem("resume")){
-        var parsedJSON = JSON.parse(localStorage.getItem("resume"))
+        parsedJSON = JSON.parse(localStorage.getItem("resume"))
     }
 
     return (
@@ -45,10 +46,10 @@ export default function Home() {
                 <tbody>
                   <tr>
                     <td>
-                      {parsedJSON.name}
+                      {parsedJSON.name.split(" ")[0]}
                     </td>
                     <td>
-                    {parsedJSON.name}
+                    {parsedJSON.name.split(" ")[1]}
                     </td>
                     <td>
                       {parsedJSON.date.split(" ").slice(0,5)}

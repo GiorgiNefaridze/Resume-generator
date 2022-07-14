@@ -1,5 +1,7 @@
 import { useRef,useEffect } from 'react'
 
+import './ContextMenu.scss'
+
 export default function ContextMenu({posX,posY,setShowContentMenu,resumeId,setArrayOfResumes,arrayOfResumes}){
 
     const contextMenuRef = useRef()
@@ -10,7 +12,7 @@ export default function ContextMenu({posX,posY,setShowContentMenu,resumeId,setAr
         return () => {
             document.removeEventListener('click', handleClickOutside)
         }
-    })
+    }, [])
 
     const handleClickOutside = (e) => {
         if(!contextMenuRef.current.contains(e.target) || e.target === contextMenuRef.current){
@@ -19,14 +21,9 @@ export default function ContextMenu({posX,posY,setShowContentMenu,resumeId,setAr
     }
 
     const styles = {
-        backgroundColor:"red",
-        position:"absolute",
         top:`${posY}px`,
         left:`${posX}px`,
-        padding:"10px",
-        borderRadius:"5px",
-        color:"white",
-        cursor:"pointer"
+
     }
 
     const deleteResume = () => {
@@ -35,6 +32,6 @@ export default function ContextMenu({posX,posY,setShowContentMenu,resumeId,setAr
     }
 
     return(
-        <div onClick={deleteResume} ref={contextMenuRef} style={styles}>DELETE</div>
+        <div className="context-menu-container" onClick={deleteResume} ref={contextMenuRef} style={styles}>DELETE</div>
     )
 }

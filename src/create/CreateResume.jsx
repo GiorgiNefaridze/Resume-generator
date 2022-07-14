@@ -1,15 +1,22 @@
 import { useState,useEffect } from 'react'
-import FormForTheme from '../components/FormForTheme'
 import { useLocation,useNavigate } from 'react-router-dom'
+import { Spinner } from 'reactstrap'
+
+import FormForTheme from '../components/FormForTheme'
 import PhoneImg from '../images/phone.webp'
 import EmailImg from '../images/email.jpg'
 import LocationImg from '../images/location.png'
-import ProgressBar from '../components/progressBar/ProgressBar'
-import useFetch from '../useFetch'
-import { Spinner } from 'reactstrap'
+import ProgressBar from '../components/ProgressBar/ProgressBar'
+import useFetch from '../hooks/useFetch'
+
 import './CreateResume.scss'
 
+    const getLocalStorageItems = (arr) => {
+        return arr.map(item => localStorage.getItem(item))
+    }
+    
 export default function CreateResume() {
+    const [userName, phone, mail, address, smry, userExperience, userSkills] = getLocalStorageItems(['name', 'number', 'email', 'adress','summary', 'experience','skills'])
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -83,45 +90,31 @@ export default function CreateResume() {
                             <div className='angora-container-name'>
                                 <h1
                                     style={{color:themeColor}}>
-                                        {localStorage.getItem("name") && localStorage.getItem("name") !== ""
-                                        ? localStorage.getItem("name")
-                                        : userdata.name}</h1>
-                                <p>{localStorage.getItem("number") && localStorage.getItem("number") !== ""
-                                        ? localStorage.getItem("number")
-                                        : userdata.phone}</p>
-                                <p>{localStorage.getItem("email") && localStorage.getItem("email") !== ""
-                                        ? localStorage.getItem("email")
-                                        : userdata.email}.</p>
-                                <p>{localStorage.getItem("adress") && localStorage.getItem("adress") !== ""
-                                        ? localStorage.getItem("adress")
-                                        : userdata.address}</p>
+                                        {userName && userName !== "" ? userName : userdata.name}</h1>
+                                <p>{phone && phone !== "" ? phone : userdata.phone}</p>
+                                <p>{mail && mail !== "" ? mail: userdata.email}</p>
+                                <p>{address && address !== "" ? address : userdata.address}</p>
                             </div>
                             <div className='angora-container-summary'>
                                 <h2
                                     style={{
                                     color: themeColor
                                 }}>Professional Summary</h2>
-                                <p>{localStorage.getItem("summary") && localStorage.getItem("summary") !== ""
-                                        ? localStorage.getItem("summary")
-                                        : userdata.summary}</p>
+                                <p>{smry && smry !== "" ? smry : userdata.summary}</p>
                             </div>
                             <div className='angora-container-skills'>
                                 <h2
                                     style={{
                                     color: themeColor
                                 }}>Skills</h2>
-                                <p>{localStorage.getItem("skills") && localStorage.getItem("skills") !== ""
-                                        ? localStorage.getItem("skills")
-                                        : userdata.skills}</p>
+                                <p>{userSkills && userSkills !== "" ? userSkills: userdata.skills}</p>
                             </div>
                             <div className='angora-container-experience'>
                                 <h2
                                     style={{
                                     color: themeColor
                                 }}>Experience</h2>
-                                <p>{localStorage.getItem("experience") && localStorage.getItem("experience") !== ""
-                                        ? localStorage.getItem("experience")
-                                        : userdata.experience}</p>
+                                <p>{userExperience &&  userExperience !== "" ? userExperience: userdata.experience}</p>
                             </div>
                         </div>
                     : <div className="blueprint-container">
@@ -129,9 +122,7 @@ export default function CreateResume() {
                         <h1
                             style={{
                             color: themeColor
-                        }}>{localStorage.getItem("name") && localStorage.getItem("name") !== ""
-                                ? localStorage.getItem("name")
-                                : userdata.name}</h1>
+                        }}>{userName && userName !== "" ? userName : userdata.name}</h1>
                         <div className='blueprint-container-inner'>
                             <div className="blueprint-container-inner-left-side">
                                 <div className="contact">
@@ -141,21 +132,15 @@ export default function CreateResume() {
                                     }}>CONTACT</span>
                                     <div>
                                         <img src={PhoneImg} alt="PhoneImg"/>
-                                        <p>{localStorage.getItem("number") && localStorage.getItem("number") !== ""
-                                                ? localStorage.getItem("number")
-                                                : userdata.phone}</p>
+                                        <p>{phone && phone !== "" ? phone : userdata.phone}</p>
                                     </div>
                                     <div>
                                         <img src={EmailImg} alt="EmailImg"/>
-                                        <p>{localStorage.getItem("email") && localStorage.getItem("email") !== ""
-                                                ? localStorage.getItem("email")
-                                                : userdata.email}</p>
+                                        <p>{mail && mail !== "" ? mail: userdata.email}</p>
                                     </div>
                                     <div>
                                         <img src={LocationImg} alt="LocationImg"/>
-                                        <p>{localStorage.getItem("adress") && localStorage.getItem("adress") !== ""
-                                                ? localStorage.getItem("adress")
-                                                : userdata.address}</p>
+                                        <p>{address && address !== "" ? address : userdata.address}</p>
                                     </div>
                                 </div>
                                 <div className="summary">
@@ -163,18 +148,14 @@ export default function CreateResume() {
                                         style={{
                                         color: themeColor
                                     }}>SUMMARY</span>
-                                    <p>{localStorage.getItem("summary") && localStorage.getItem("summary") !== ""
-                                            ? localStorage.getItem("summary")
-                                            : userdata.summary}</p>
+                                    <p>{smry && smry !== "" ? smry : userdata.summary}</p>
                                 </div>
                                 <div className="skills">
                                     <span
                                         style={{
                                         color: themeColor
                                     }}>SKILLS</span>
-                                    <p>{localStorage.getItem("skills") && localStorage.getItem("skills") !== ""
-                                            ? localStorage.getItem("skills")
-                                            : userdata.sills}</p>
+                                    <p>{userSkills && userSkills !== "" ? userSkills: userdata.skills}</p>
                                 </div>
                             </div>
                             <div className="blueprint-container-inner-right-side">
@@ -182,9 +163,7 @@ export default function CreateResume() {
                                     style={{
                                     color: themeColor
                                 }}>EXPERIENCE</span>
-                                <p>{localStorage.getItem("experience") && localStorage.getItem("experience") !== ""
-                                        ? localStorage.getItem("experience")
-                                        : userdata.experience}</p>
+                                <p>{userExperience &&  userExperience !== "" ? userExperience: userdata.experience}</p>
                             </div>
                         </div>
                         <div className="arrow"></div>

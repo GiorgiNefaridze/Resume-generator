@@ -26,68 +26,6 @@ export default function FormForTheme({
     setSkills,
     parsedSavedJSON
 }) {
-    const storeNameInLocalStorage = (e) => {
-        setName(e.target.value)
-        localStorage.setItem("name", e.target.value)
-        setData({
-            ...data,
-            "name": e.target.value
-        })
-    }
-
-    const storeNumberInLocalStorage = (e) => {
-        setNumber(e.target.value)
-        localStorage.setItem("number", e.target.value)
-        setData({
-            ...data,
-            "number": e.target.value
-        })
-    }
-
-    const storeEmailInLocalStorage = (e) => {
-        setEmail(e.target.value)
-        localStorage.setItem("email", e.target.value)
-        setData({
-            ...data,
-            "email": e.target.value
-        })
-    }
-
-    const storeAdressInLocalStorage = (e) => {
-        setAdress(e.target.value)
-        localStorage.setItem("adress", e.target.value)
-        setData({
-            ...data,
-            "adress": e.target.value
-        })
-    }
-
-    const storeSummaryInLocalStorage = (e) => {
-        setSummary(e.target.value)
-        localStorage.setItem("summary", e.target.value)
-        setData({
-            ...data,
-            "summary": e.target.value
-        })
-    }
-
-    const storeExperienceInLocalStorage = (e) => {
-        setExperience(e.target.value)
-        localStorage.setItem("experience", e.target.value)
-        setData({
-            ...data,
-            "experience": e.target.value
-        })
-    }
-
-    const storeSkillInLocalStorage = (e) => {
-        setSkills(e.target.value)
-        localStorage.setItem("skills", e.target.value)
-        setData({
-            ...data,
-            "skills": e.target.value
-        })
-    }
 
     return (
         <Form>
@@ -100,7 +38,7 @@ export default function FormForTheme({
                         <Input
                             value={name}
                             placeholder={parsedSavedJSON && parsedSavedJSON.name}
-                            onChange={(e) => storeNameInLocalStorage(e)}
+                            onChange={(e) => {setName(e.target.value);localStorage.setItem("name", e.target.value)}}
                             id="name"
                             type="text"/>
                     </FormGroup>
@@ -113,7 +51,7 @@ export default function FormForTheme({
                         <Input
                             value={number}
                             placeholder={parsedSavedJSON && parsedSavedJSON.number}
-                            onChange={(e) => storeNumberInLocalStorage(e)}
+                            onChange={(e) => {setNumber(e.target.value);localStorage.setItem("number", e.target.value)}}
                             type="text"
                             id="tel"/>
                     </FormGroup>
@@ -128,7 +66,7 @@ export default function FormForTheme({
                         <Input
                             value={email}
                             placeholder={parsedSavedJSON && parsedSavedJSON.email}
-                            onChange={(e) => storeEmailInLocalStorage(e)}
+                            onChange={(e) => {setEmail(e.target.value);localStorage.setItem("email", e.target.value)}}
                             id="email"
                             type="email"/>
                     </FormGroup>
@@ -142,7 +80,7 @@ export default function FormForTheme({
                             value={adress}
                             placeholder={parsedSavedJSON && parsedSavedJSON.adress}
                             type="text"
-                            onChange={(e) => storeAdressInLocalStorage(e)}
+                            onChange={(e) => {setAdress(e.target.value);localStorage.setItem("adress", e.target.value)}}
                             id="adress"/>
                     </FormGroup>
                 </Col>
@@ -156,7 +94,7 @@ export default function FormForTheme({
                         <Input
                             value={summary}
                             placeholder={parsedSavedJSON && parsedSavedJSON.summary}
-                            onChange={(e) => storeSummaryInLocalStorage(e)}
+                            onChange={(e) => {setSummary(e.target.value);localStorage.setItem("summary", e.target.value)}}
                             id="summary"/>
                     </FormGroup>
                 </Col>
@@ -168,7 +106,7 @@ export default function FormForTheme({
                         <Input
                             value={skills}
                             placeholder={parsedSavedJSON && parsedSavedJSON.skills}
-                            onChange={(e) => storeSkillInLocalStorage(e)}
+                            onChange={(e) => {setSkills(e.target.value);localStorage.setItem("skills", e.target.value)}}
                             type="text"
                             id="skills"/>
                     </FormGroup>
@@ -181,7 +119,7 @@ export default function FormForTheme({
                         <Input
                             value={experience}
                             placeholder={parsedSavedJSON && parsedSavedJSON.experience}
-                            onChange={(e) => storeExperienceInLocalStorage(e)}
+                            onChange={(e) => {setExperience(e.target.value);localStorage.setItem("experience", e.target.value)}}
                             id="experience"/>
                     </FormGroup>
                 </Col>

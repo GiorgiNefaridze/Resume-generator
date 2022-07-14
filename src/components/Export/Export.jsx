@@ -1,11 +1,13 @@
 import { useRef,useState } from 'react';
 import { useLocation,useNavigate } from 'react-router-dom';
-import PopUp from '../components/popUp/PopUp';
-import PhoneImg from '../images/phone.webp'
-import EmailImg from '../images/email.jpg'
-import LocationImg from '../images/location.png'
 import html2canvas from 'html2canvas'
 import jspdf from 'jspdf'
+
+import PopUp from '../PopUp/PopUp';
+import PhoneImg from '../../images/phone.webp'
+import EmailImg from '../../images/email.jpg'
+import LocationImg from '../../images/location.png'
+
 import './Export.scss'
 
 export default function Export() {
@@ -43,6 +45,15 @@ export default function Export() {
         });
     }
 
+    const exportJSON = () => {
+        var data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(userDetails));
+        var aTag = document.createElement("a")
+        aTag.setAttribute("href", data);
+        aTag.setAttribute("download", "resume.json");
+        aTag.click();
+        aTag.remove();
+    }
+
     const userDetails = {
         id:new Date().getTime(),
         date:new Date().toString(),
@@ -53,15 +64,6 @@ export default function Export() {
         summary:localStorage.getItem("summary"),
         skills:localStorage.getItem("skills"),
         experience:localStorage.getItem("experience"),
-    }
-
-    const exportJSON = () => {
-        var data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(userDetails));
-        var aTag = document.createElement("a")
-        aTag.setAttribute("href", data);
-        aTag.setAttribute("download", "resume.json");
-        aTag.click();
-        aTag.remove();
     }
 
     const buildAnoutherResume = () => {

@@ -1,4 +1,5 @@
 import { Progress } from 'reactstrap'
+
 import './ProgressBar.scss'
 
 export default function ProgressBar({findOuFillInput}) {

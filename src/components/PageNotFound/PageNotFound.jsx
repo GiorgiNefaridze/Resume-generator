@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import NotFoundError from '../images/404-image.png'
+import NotFoundError from '../../images/404-image.png'
+
 import './PageNotFound.scss'
 
 export default function PageNotFound() {
