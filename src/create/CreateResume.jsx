@@ -11,9 +11,9 @@ import useFetch from '../hooks/useFetch'
 
 import './CreateResume.scss'
 
-    const getLocalStorageItems = (arr) => {
-        return arr.map(item => localStorage.getItem(item))
-    }
+const getLocalStorageItems = (arr) => {
+    return arr.map(item => localStorage.getItem(item))
+}
     
 export default function CreateResume() {
     const [userName, phone, mail, address, smry, userExperience, userSkills] = getLocalStorageItems(['name', 'number', 'email', 'adress','summary', 'experience','skills'])
