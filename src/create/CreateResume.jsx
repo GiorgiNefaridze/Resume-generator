@@ -34,6 +34,10 @@ export default function CreateResume() {
     const themeColor = localStorage.getItem("color")
     const themeName = localStorage.getItem("theme")
 
+    useEffect(()=> {
+        console.log(themeName)
+    })
+
     let parsedSavedJSON
 
     if(location.state !== null){
@@ -55,12 +59,11 @@ export default function CreateResume() {
 
     const { data: userdata,loading } = useFetch()
 
+    if(loading) {
+        return <Spinner id="spinner" color="primary">Loading...</Spinner>
+    }
+
     return (
-        <>
-            {loading ? <Spinner id="spinner" color="primary">
-              Loading...
-            </Spinner>
-            :
             <div className="create-resume-container">
             <div className="create-resume-container-info-inputs">
                 <FormForTheme 
@@ -172,7 +175,5 @@ export default function CreateResume() {
             </div>
             <ProgressBar findOuFillInput={findOuFillInput} />
         </div>
-            }
-        </>
     )
 }
